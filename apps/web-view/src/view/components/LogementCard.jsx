@@ -20,7 +20,7 @@ export const LogementCard = ({ logement }) => {
         borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0'
       }}>
         <img 
-          src={logement.photos[0]} 
+          src={logement.photos?.[0] && logement.photos[0] !== "null" ? `http://localhost:3001${logement.photos[0]}` : "https://via.placeholder.com/400x300"} 
           alt={logement.titre}
           style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
           onMouseEnter={(e) => e.target.style.transform = 'scale(1.03)'}
@@ -83,7 +83,7 @@ export const LogementCard = ({ logement }) => {
           fontWeight: '700',
           fontSize: 'var(--body-sm)'
         }}>
-          {logement.prix} DZD <span style={{ fontWeight: '400', fontSize: 'var(--label-sm)', color: 'var(--on-surface-variant)' }}>/ nuit</span>
+          {logement.prix_par_nuit} DZD <span style={{ fontWeight: '400', fontSize: 'var(--label-sm)', color: 'var(--on-surface-variant)' }}>/ nuit</span>
         </div>
       </div>
 
@@ -94,10 +94,10 @@ export const LogementCard = ({ logement }) => {
           </h3>
         </div>
         <p style={{ color: 'var(--on-surface-variant)', fontSize: 'var(--body-sm)', marginBottom: 'var(--spacing-2)' }}>
-          {logement.ville}
+          {logement.adresse}
         </p>
         <p style={{ color: 'var(--on-surface-variant)', fontSize: 'var(--label-sm)' }}>
-          {logement.type} · {logement.voyageurs || 4} voyageurs
+          {logement.type_logement} · {logement.capacite_accueil || 4} voyageurs
         </p>
       </div>
     </Link>
